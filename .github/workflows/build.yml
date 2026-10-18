@@ -1,0 +1,43 @@
+name: EAS cloud build
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        type: choice
+        options: [android, ios, all]
+        default: android
+        description: Platform to build
+      profile:
+        type: choice
+        options: [preview, production]
+        default: preview
+        description: EAS build profile (production requires personalization)
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment: ${{ inputs.profile }}
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EAS_PROJECT_ID: ${{ vars.EAS_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Check Expo setup
+        run: |
+          test -n "$EXPO_TOKEN" || { echo "::error::Configure the EXPO_TOKEN GitHub environment secret."; exit 1; }
+          npx --yes eas-cli@25.2.0 whoami
+      - name: Build (does not submit to stores)
+        run: npx --yes eas-cli@25.2.0 build --platform "$PLATFORM" --profile "$PROFILE" --non-interactive --wait
+        env:
+          PLATFORM: ${{ inputs.platform }}
+          PROFILE: ${{ inputs.profile }}
