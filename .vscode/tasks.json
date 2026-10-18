@@ -1,28 +1,11 @@
 {
   "version": "2.0.0",
   "tasks": [
-    { "label": "Setup: Install locked dependencies", "type": "shell", "command": "npm ci", "problemMatcher": [], "group": "build" },
-    { "label": "Dev: Start Expo", "type": "npm", "script": "start", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
-    { "label": "Dev: Open Android", "type": "npm", "script": "android", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
-    { "label": "Dev: Open iOS simulator (macOS)", "type": "npm", "script": "ios", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
-    { "label": "Build: Run Android native", "type": "npm", "script": "android:native", "problemMatcher": [], "group": "build" },
-    { "label": "Build: Run iOS native (macOS)", "type": "npm", "script": "ios:native", "problemMatcher": [], "group": "build" },
-    { "label": "Check: Everything", "type": "npm", "script": "check", "problemMatcher": [], "group": { "kind": "test", "isDefault": true } },
-    { "label": "Check: TypeScript", "type": "npm", "script": "typecheck", "problemMatcher": "$tsc" },
-    { "label": "Check: ESLint", "type": "npm", "script": "lint", "problemMatcher": [] },
-    { "label": "Check: Expo Doctor", "type": "npm", "script": "doctor", "problemMatcher": [] },
-    { "label": "Test: Watch", "type": "shell", "command": "npm test -- --watch", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
-    { "label": "Test: Coverage", "type": "npm", "script": "test:ci", "problemMatcher": [], "group": "test" },
-    { "label": "Test: SQLite integration", "type": "npm", "script": "test:integration", "problemMatcher": [], "group": "test" },
-    { "label": "Build: Export production bundles", "type": "npm", "script": "export", "problemMatcher": [], "group": { "kind": "build", "isDefault": true } },
-    { "label": "EAS: Login", "type": "shell", "command": "npx --yes eas-cli@25.2.0 login", "problemMatcher": [] },
-    { "label": "EAS: Link own project", "type": "shell", "command": "npx --yes eas-cli@25.2.0 init", "problemMatcher": [] },
-    { "label": "EAS: Android preview APK", "type": "npm", "script": "build:android:preview", "problemMatcher": [] },
-    { "label": "EAS: iOS simulator preview", "type": "npm", "script": "build:ios:preview", "problemMatcher": [] },
-    { "label": "Release: Validate configuration", "type": "npm", "script": "release:check", "problemMatcher": [] },
-    { "label": "Release: Android store AAB", "type": "npm", "script": "build:android:production", "problemMatcher": [] },
-    { "label": "Release: iOS store build", "type": "npm", "script": "build:ios:production", "problemMatcher": [] },
-    { "label": "Release: Submit Android (interactive)", "type": "npm", "script": "submit:android", "problemMatcher": [] },
-    { "label": "Release: Submit iOS (interactive)", "type": "npm", "script": "submit:ios", "problemMatcher": [] }
+    { "label": "Start app", "type": "shell", "command": "npm start", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
+    { "label": "Run Android", "type": "shell", "command": "npm run android", "problemMatcher": [], "group": { "kind": "build", "isDefault": true }, "presentation": { "panel": "dedicated" } },
+    { "label": "Run iOS (macOS)", "type": "shell", "command": "npm run ios", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
+    { "label": "Check everything", "type": "shell", "command": "npm run check", "problemMatcher": [], "group": { "kind": "test", "isDefault": true } },
+    { "label": "Watch tests", "type": "shell", "command": "npm test -- --watch", "problemMatcher": [], "presentation": { "panel": "dedicated" } },
+    { "label": "Expo Doctor", "type": "shell", "command": "npm run doctor", "problemMatcher": [] }
   ]
 }

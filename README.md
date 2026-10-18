@@ -101,9 +101,13 @@ App identity is intentionally in static [app.json](app.json).
 | `npm run build:ios:production` | Signed App Store build |
 | `npm run release:check` | Reject incomplete production identity/URLs/project ID |
 
-In VS Code use **Terminal > Run Task**. **Ctrl+Shift+B** exports production
-bundles; **Run Test Task** runs all quality checks. EAS and submission tasks are
-explicit, interactive actions, never triggered by opening the workspace.
+In VS Code use **Terminal > Run Task** for six everyday tasks: **Start app**,
+**Run Android**, **Run iOS (macOS)**, **Check everything**, **Watch tests**, and
+**Expo Doctor**. **Ctrl+Shift+B** builds and runs Android; **Run Test Task** runs
+all quality checks. Automatic npm task discovery is disabled in this workspace
+to keep the menu focused. All npm scripts remain available from the terminal.
+For one-time setup, cloud builds, and store submissions, use the commands above
+and the [publishing guide](docs/PUBLISHING.md).
 
 ## Project layout
 
